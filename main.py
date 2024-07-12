@@ -13,6 +13,7 @@ from backend.admin import setup_admin
 from backend.commands import setup_commands
 from backend.models import db
 from backend.routes import api
+from flask_jwt_extended import create_access_token
 
 load_dotenv()
 
@@ -30,6 +31,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv(
 db.init_app(app)
 migrate = Migrate(app, db)
 cors = CORS(app)
+jwt = JWTManager(app)
 
 setup_admin(app)
 setup_commands(app)
